@@ -1,7 +1,7 @@
 <template>
   <div>
     <top-header></top-header>
-    Welcome Thank you for showing up. I appreciate you!
+    <h3>You are logged In</h3>
   </div>
 </template>
 

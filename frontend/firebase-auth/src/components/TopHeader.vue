@@ -40,8 +40,10 @@ div {
 }
 
 button {
-  width: 400px;
+  width: 250px;
   height: 75px;
+  border: 1px;
+  border-radius: 30px;
   font-size: 100%;
   margin: 5rem 0;
 }

@@ -7,7 +7,7 @@
     <div class="error" v-if="error">{{error.message}}</div>
     <form @submit.prevent="pressed">
       <div class="first">
-        <input type="text" v-model="firstName" placeholder="First Name" />
+        <input autofocus type="text" v-model="firstName" placeholder="First Name" />
       </div>
       <div class="last">
         <input type="password" v-model="lastName" placeholder="Last Name" />
@@ -63,18 +63,25 @@ export default {
 
 <style lang="scss" scoped>
 .error {
-  color: red;
+  color: orange;
   font-size: 18px;
 }
 input {
-  width: 400px;
-  padding: 30px;
+  width: 280px;
+  color: white;
+  border: 2px solid white;
+  background-color: transparent;
+  border-color: transparent transparent white transparent;
+  padding: 20px;
   margin: 20px;
   font-size: 21px;
 }
 button {
-  width: 400px;
-  height: 75px;
+  width: 200px;
+  margin: 20px;
+  height: 50px;
   font-size: 100%;
+  border: 1px;
+  border-radius: 30px;
 }
 </style>
