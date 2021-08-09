@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
+import ResetPassword from '../views/ResetPassword.vue'
 import Secret from '../views/Secret.vue'
 
 import * as firebase from 'firebase/app'
@@ -9,6 +10,12 @@ import * as firebase from 'firebase/app'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'Login',
+    component: Login
+  },
+
   {
     path: '/register',
     name: 'Register',
@@ -19,6 +26,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+
+  {
+    path: '/reset-password',
+    name: 'ResetPassword',
+    component: ResetPassword
   },
 
   {

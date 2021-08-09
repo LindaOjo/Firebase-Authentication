@@ -1,33 +1,51 @@
 <template>
   <div id="app">
-    <topHeader></topHeader>
-    <div id="nav">
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/register">Register</router-link> |
-      <router-link to="/secret">Secret</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-import TopHeader from './components/TopHeader.vue'
+
+import { mapGetters } from 'vuex'
 
 export default {
-  components: {
-    TopHeader
+  methods: {
+    ...mapGetters([
+      'isLoggedIn'
+    ])
   }
 }
 </script>
 
 <style lang="scss">
+*, html, body{
+  padding: 0;
+  margin: 0;
+
+  button {
+    cursor: pointer;
+  }
+
+}
+
+input {
+ outline: none;
+}
+
+a, a:visited, a:hover, a:focus {
+    text-decoration: none;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #00012c;
+  display: block;
+  height: 100vh;
+  width: 100vw;
 }
 
 #nav {
@@ -35,7 +53,7 @@ export default {
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #ffffff;
 
     &.router-link-exact-active {
       color: #42b983;
