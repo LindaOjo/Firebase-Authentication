@@ -1,9 +1,12 @@
 <template>
   <div>
-    <h3>Login</h3>
+    <div v-if="!isLoggedIn()" id="nav">
+      <router-link to="/login">Login</router-link> |
+      <router-link to="/register">Register</router-link>
+    </div>
     <form @submit.prevent="login">
       <div class="login">
-        <input type="text" placeholder="login" v-model="email" />
+        <input type="text" placeholder="email" v-model="email" autocomplete="on" />
       </div>
       <div class="password">
         <input type="password" placeholder="password" v-model="password" />
@@ -18,6 +21,8 @@
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
@@ -27,10 +32,17 @@ export default {
     }
   },
   methods: {
+    ...mapGetters([
+      'isLoggedIn'
+    ]),
+    ...mapActions([
+      'setLoggedIn',
+      'setUpAccount'
+    ]),
     login () {
       firebase.default.auth().signInWithEmailAndPassword(this.email, this.password)
         .then((response) => {
-          console.log(response)
+          this.setLoggedIn(true)
           this.$router.replace({ name: 'Secret' })
         })
         .catch(error => {

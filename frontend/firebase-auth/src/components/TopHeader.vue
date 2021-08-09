@@ -1,40 +1,33 @@
 <template>
   <div>
-    Logged in
-    <div v-if="loggedIn">Yes</div>
-    <div v-else>No</div>
-    <button class="but" @click="signOut">Sign out</button>
+    <button @click="signOut">Sign out</button>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 
 export default {
   name: 'top-header',
-  mounted () {
-    firebase.default.auth().onAuthStateChanged(user => {
-      this.loggedIn = !!user
-    })
-  },
   methods: {
-    setupFirebase () {
-    },
+    ...mapGetters([
+      'isLoggedIn'
+    ]),
+    ...mapActions([
+      'setLoggedIn'
+    ]),
     signOut () {
-      if (!this.loggedIn) return
       firebase.default.auth().signOut()
         .then(() => {
+          this.setLoggedIn(false)
+          console.log(this.isLoggedIn())
           this.$router.replace({ name: 'Login' })
         })
         .catch((error) => {
           console.log(error)
         })
-    }
-  },
-  data () {
-    return {
-      loggedIn: false
     }
   }
 }
@@ -42,6 +35,14 @@ export default {
 
 <style lang="scss" scoped>
 div {
-  color: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  width: 400px;
+  height: 75px;
+  font-size: 100%;
+  margin: 5rem 0;
 }
 </style>
